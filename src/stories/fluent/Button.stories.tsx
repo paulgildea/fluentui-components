@@ -1,34 +1,76 @@
 import React from 'react';
 // also exported from '@storybook/react' if you can deal with breaking changes in 6.1
 import { Story, Meta } from '@storybook/react/types-6-0';
+import { action } from '@storybook/addon-actions';
 import { ThemeProvider } from '@fluentui/react-theme-provider';
-import { ShareIcon } from '@fluentui/react-icons';
-import {Button, ButtonProps, ButtonTokens, ButtonVariants, ToggleButton } from '@fluentui/react-button';
-import {TooltipHost, Stack, IStackTokens, IPartialTheme, Slider, Toggle} from '@fluentui/react';
+import { Button, ButtonProps, ButtonTokens } from '@fluentui/react-button';
+import { TooltipHost, Stack, IStackTokens, IPartialTheme } from '@fluentui/react';
+import { AttachIcon, AsteriskIcon, AddIcon, BirthdayCakeIcon, ChevronDownIcon, ISvgIconProps, ShareIcon } from '@fluentui/react-icons';
 
-// export default {
-//   title: 'Example/Button',
-//   component: Button,
-//   argTypes: {
-//     backgroundColor: { control: 'color' },
-//   },
-// } as Meta;
+interface IconMap {
+  [icon: string]: React.FC<React.HTMLAttributes<HTMLSpanElement> & ISvgIconProps>
+}
 
-// const Template: Story<ButtonProps> = (args) => <ThemeProvider><Button {...args}>Hello</Button></ThemeProvider>;
+const iconMap: IconMap = {
+  AttachIcon,
+  AsteriskIcon,
+  AddIcon,
+  BirthdayCakeIcon,
+  ChevronDownIcon,
+};
 
-// export const Primary = Template.bind({});
-// Primary.args = {
-//   primary: true,
-//   ghost: false,
-//   fluid: false,
-//   secondary: false,
-  
-// };
+export default {
+  title: 'Components/Button',
+  component: Button,
+  argTypes: {
+    icon: {
+      control: {
+        type: 'select',
+        options: Object.keys(iconMap)
+      }
+    },
+    size: {
+      control: {
+        type: 'select',
+        options: [
+          'smallest',
+          'smaller',
+          'small',
+          'medium',
+          'large',
+          'larger',
+          'largest'
+        ]
+      }
+    },
+  },
+} as Meta;
 
-// export const Ghost = Template.bind({});
-// Ghost.args = {
-//   ghost: true,
-// };
+const Template: Story<ButtonProps> = (args) => {
+  const key: string = args.icon as string;
+  const selectedIcon: React.FC<React.HTMLAttributes<HTMLSpanElement> & ISvgIconProps>  = iconMap[key];
+  return <ThemeProvider><Button {...args} icon={selectedIcon}>Button</Button></ThemeProvider>;
+
+};
+export const Default = Template.bind({});
+const buttonArgs: ButtonProps = {
+  primary: false,
+  secondary: false,
+  circular: false,
+  disabled: false,
+  tokens: {background:''},
+  content: {},
+  href: '',
+  block: false,
+  iconOnly: false,
+  icon: {},
+  loading: false,
+  inverted: false,
+  size: undefined,
+  ghost: false,
+  onClick: action('Click Fired'),
+}
+Default.args = buttonArgs;
 
 const stackTokens: IStackTokens = {childrenGap: 40};
 export const primaryButtons = () => {
@@ -60,10 +102,16 @@ export const iconButtonWithTooltip = () => {
     <ThemeProvider>
       <Stack horizontal tokens={stackTokens}>
         <TooltipHost content="Share">
-          <Button icon={<ShareIcon/>} onClick={click} />
+          <Button iconOnly primary icon={<ShareIcon/>} onClick={click} />
         </TooltipHost>
         <TooltipHost content="Share">
-          <Button ghost icon={<ShareIcon/>} onClick={click} />
+          <Button iconOnly icon={<ShareIcon/>} onClick={click} />
+        </TooltipHost>
+        <TooltipHost content="Share">
+          <Button iconOnly circular icon={<ShareIcon/>} onClick={click} />
+        </TooltipHost>
+        <TooltipHost content="Share">
+          <Button ghost iconOnly icon={<ShareIcon/>} onClick={click} />
         </TooltipHost>
       </Stack>
     </ThemeProvider>
@@ -111,8 +159,8 @@ export const themingBackwardsCompatibility = () => {
 
 export const customButtonVariants = () => {
 
-  const pillVariant: ButtonTokens = {
-    borderRadius: '30px',
+  const shadowVariant: ButtonTokens = {
+    boxShadow: '0px 0.3px 0.9px rgba(0, 0, 0, 0.32), 0px 1.6px 3.6px rgba(0, 0, 0, 0.28)',
   };
   
 
@@ -120,7 +168,7 @@ export const customButtonVariants = () => {
     components: {
       Button: {
         variants: {
-          pill: pillVariant
+          shadow: shadowVariant
         }
       }
     }
@@ -128,7 +176,7 @@ export const customButtonVariants = () => {
 
   return (
     <ThemeProvider theme={myTheme}>
-      <Button primary variant="pill">Pill Button</Button>
+      <Button primary variant="shadow">Shadow Button</Button>
     </ThemeProvider>
   );
 

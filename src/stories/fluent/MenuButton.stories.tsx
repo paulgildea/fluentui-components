@@ -3,22 +3,81 @@ import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { action } from '@storybook/addon-actions';
 import { ThemeProvider } from '@fluentui/react-theme-provider';
-import {MenuButton, MenuButtonProps, MenuButtonTokens } from '@fluentui/react-button';
-import {IPartialTheme} from '@fluentui/react';
+import {ButtonProps, MenuButton, MenuButtonProps, MenuButtonTokens } from '@fluentui/react-button';
+import { IPartialTheme, Stack, IStackTokens} from '@fluentui/react';
+import { AttachIcon, AsteriskIcon, AddIcon, BirthdayCakeIcon, DownloadIcon, CaretDownSolid8Icon, ChevronDownIcon, ISvgIconProps } from '@fluentui/react-icons';
+
+interface IconMap {
+  [icon: string]: React.FC<React.HTMLAttributes<HTMLSpanElement> & ISvgIconProps>
+}
+
+const iconMap: IconMap = {
+  AttachIcon,
+  AsteriskIcon,
+  AddIcon,
+  BirthdayCakeIcon,
+  ChevronDownIcon,
+};
 
 export default {
   title: 'Components/MenuButton',
   component: MenuButton,
- 
+  argTypes: {
+    icon: {
+      control: {
+        type: 'select',
+        options: Object.keys(iconMap)
+      }
+    },
+    size: {
+      control: {
+        type: 'select',
+        options: [
+          'smallest',
+          'smaller',
+          'small',
+          'medium',
+          'large',
+          'larger',
+          'largest'
+        ]
+      }
+    },
+    tokens: {
+      control: {
+        type: 'object'
+      }
+    }
+  }
 } as Meta;
 
-const Template: Story<MenuButtonProps> = (args) => <ThemeProvider><MenuButton {...args}>Menu Button</MenuButton></ThemeProvider>;
 
+
+const Template: Story<MenuButtonProps> = (args) => {
+  const selectedIcon: React.FC<React.HTMLAttributes<HTMLSpanElement> & ISvgIconProps>  = iconMap[args.icon];
+return <ThemeProvider><MenuButton {...args} icon={selectedIcon}>Menu Button</MenuButton></ThemeProvider>;
+}
+
+const menuProps: ButtonProps = {
+  primary: false,
+  secondary: false,
+  circular: false,
+  disabled: false,
+  tokens: {},
+  content: {},
+  href: '',
+  block: false,
+  iconOnly: false,
+  icon: {},
+  loading: false,
+  inverted: false,
+  size: undefined,
+  ghost: false,
+  onClick: action('Click Fired'),
+}
 export const Default = Template.bind({});
-Default.args = {
-  onClick: action('clicked'),
-  onAuxClick: action('Aux click'),
-};
+Default.args = menuProps;
+
 
 export const Primary = Template.bind({});
 Primary.args = {
@@ -44,9 +103,8 @@ Circular.args = {
 export const PaletteExample = () => {
   
   const args: MenuButtonProps = {
-    onClick: action('clicked'),
-    onAuxClick: action('Aux clicked'),
     primary: true,
+    onClick: action('Click fired.'),
   };
 
   const myTheme: IPartialTheme = {
@@ -84,30 +142,57 @@ export const PaletteExample = () => {
 }
 
 export const VariantExamples = () => {
-  
+
   const args: MenuButtonProps = {
-    onClick: action('clicked'),
-    onAuxClick: action('Aux clicked'),
+    onClick: action('Click fired.'),
     primary: true,
+    icon: DownloadIcon,
+    menuIcon: CaretDownSolid8Icon
   };
 
-  const shadowVariant: MenuButtonTokens = {
-    boxShadow: '0px 0.3px 0.9px rgba(0, 0, 0, 0.32), 0px 1.6px 3.6px rgba(0, 0, 0, 0.28)',
+  const gitHubVariant: MenuButtonTokens = {
+    background: '#2ea44f',
+    contentColor: '#fff',
+    borderColor: 'rgba(27,31,35,0.15)',
+    borderRadius: '6px',
+    borderWidth: '1px',
+    paddingTop: '5px',
+    paddingBottom: '5px',
+    paddingLeft: '16px',
+    paddingRight: '16px',
+    fontSize: '14px',
+    fontWeight: '500',
+    fontFamily: '-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji',
+    boxShadow: 'rgba(27, 31, 35, 0.1) 0px 1px 0px 0px, rgba(255, 255, 255, 0.03) 0px 1px 0px 0px inset',
+    hovered: {
+      background: '#2c974b',
+    },
+    pressed: {
+      background: '#2a8f47',
+      //boxShadow: 'rgba(20, 70, 32, 0.2) 0px 1px 0px 0px inset', TODO: Issue with TS
+    }
   }
 
   const myTheme: IPartialTheme = {
     components: {
       MenuButton: {
         variants: {
-          shadow: shadowVariant
+          github: gitHubVariant
         } 
       }
     }
   };
 
+  const stackTokens: IStackTokens = {
+    childrenGap: 40
+  }
+
   return (
     <ThemeProvider theme={myTheme}>
-      <MenuButton {...args} variant="shadow">Shadowed MenuButton</MenuButton>
+      <Stack tokens={stackTokens} horizontal>
+        <MenuButton {...args} variant="github">Code</MenuButton>
+        <MenuButton primary>Code</MenuButton>
+      </Stack>
     </ThemeProvider>
   )
 }
