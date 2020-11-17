@@ -169,7 +169,7 @@ export const VariantExamples = () => {
     },
     pressed: {
       background: '#2a8f47',
-      boxShadow: 'rgba(20, 70, 32, 0.2) 0px 1px 0px 0px inset',
+      //boxShadow: 'rgba(20, 70, 32, 0.2) 0px 1px 0px 0px inset', TODO: Issue with TS
     }
   }
 

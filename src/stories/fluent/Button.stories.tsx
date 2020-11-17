@@ -47,8 +47,8 @@ export default {
 } as Meta;
 
 const Template: Story<ButtonProps> = (args) => {
-
-  const selectedIcon: React.FC<React.HTMLAttributes<HTMLSpanElement> & ISvgIconProps>  = iconMap[args.icon];
+  const key: string = args.icon as string;
+  const selectedIcon: React.FC<React.HTMLAttributes<HTMLSpanElement> & ISvgIconProps>  = iconMap[key];
   return <ThemeProvider><Button {...args} icon={selectedIcon}>Button</Button></ThemeProvider>;
 
 };
@@ -58,7 +58,7 @@ const buttonArgs: ButtonProps = {
   secondary: false,
   circular: false,
   disabled: false,
-  tokens: {},
+  tokens: {background:''},
   content: {},
   href: '',
   block: false,
