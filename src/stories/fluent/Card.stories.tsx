@@ -3,7 +3,7 @@ import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { action } from '@storybook/addon-actions';
 import { ThemeProvider } from '@fluentui/react-theme-provider';
-import { Card, CardProps, CardHeader, CardBody, CardFooter, CardSectionTokens, CardTokens } from '@fluentui/react-cards/lib/next';
+import { Card, CardProps, CardFooter, CardTokens } from '@fluentui/react-cards/lib/next';
 import { Text } from '@fluentui/react-text';
 import { Image } from '@fluentui/react-image';
 import { IPartialTheme } from '@fluentui/react';
@@ -34,9 +34,9 @@ export default {
 const Template: Story<CardProps> = (args) => {
 
   //TODO: There's known issue where Cards is broken - https://github.com/microsoft/fluentui/issues/16010
-  const fullBleedVariant: CardSectionTokens = {
-    padding: '0px',
-  }
+  // const fullBleedVariant: CardSectionTokens = {
+  //   padding: '0px',
+  // }
 
   const fullBleedCardVariant: CardTokens = {
     padding: '0px',
