@@ -20,7 +20,7 @@ const iconMap: IconMap = {
 };
 
 export default {
-  title: 'Components/MenuButton',
+  title: 'Components/Button/MenuButton',
   component: MenuButton,
   argTypes: {
     icon: {

@@ -7,7 +7,7 @@ import { CompoundButton, CompoundButtonProps, ButtonTokens } from '@fluentui/rea
 import { IPartialTheme } from '@fluentui/react';
 
 export default {
-  title: 'Components/CompoundButton',
+  title: 'Components/Button/CompoundButton',
   component: CompoundButton,
  
 } as Meta;

@@ -20,7 +20,7 @@ const iconMap: IconMap = {
 };
 
 export default {
-  title: 'Components/Button',
+  title: 'Components/Button/Button',
   component: Button,
   argTypes: {
     icon: {
@@ -102,16 +102,16 @@ export const iconButtonWithTooltip = () => {
     <ThemeProvider>
       <Stack horizontal tokens={stackTokens}>
         <TooltipHost content="Share">
-          <Button iconOnly primary icon={<ShareIcon/>} onClick={click} />
+          <Button aria-label="Share" iconOnly primary icon={<ShareIcon/>} onClick={click} />
         </TooltipHost>
         <TooltipHost content="Share">
-          <Button iconOnly icon={<ShareIcon/>} onClick={click} />
+          <Button aria-label="Share" iconOnly icon={<ShareIcon/>} onClick={click} />
         </TooltipHost>
         <TooltipHost content="Share">
-          <Button iconOnly circular icon={<ShareIcon/>} onClick={click} />
+          <Button aria-label="Share" iconOnly circular icon={<ShareIcon/>} onClick={click} />
         </TooltipHost>
         <TooltipHost content="Share">
-          <Button ghost iconOnly icon={<ShareIcon/>} onClick={click} />
+          <Button aria-label="Share" ghost iconOnly icon={<ShareIcon/>} onClick={click} />
         </TooltipHost>
       </Stack>
     </ThemeProvider>

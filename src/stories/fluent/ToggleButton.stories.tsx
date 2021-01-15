@@ -7,7 +7,7 @@ import { ToggleButton, ToggleButtonProps, ButtonTokens } from '@fluentui/react-b
 import { IPartialTheme } from '@fluentui/react';
 
 export default {
-  title: 'Components/ToggleButton',
+  title: 'Components/Button/ToggleButton',
   component: ToggleButton,
  
 } as Meta;
