@@ -29,6 +29,15 @@ export default {
         options: Object.keys(iconMap)
       }
     },
+    iconPosition: {
+      control: {
+        type: 'select',
+        options: [
+          'before',
+          'after'
+        ]
+      }
+    },
     size: {
       control: {
         type: 'select',
@@ -63,6 +72,7 @@ const buttonArgs: ButtonProps = {
   href: '',
   block: false,
   iconOnly: false,
+  iconPosition: 'before',
   icon: {},
   loading: false,
   inverted: false,
