@@ -1,0 +1,133 @@
+import { Meta, Story, Canvas, Props, ArgsTable, } from '@storybook/addon-docs/blocks';
+import * as stories from './ThemeProvider.stories.tsx';
+import { ThemeProvider } from '@fluentui/react-theme-provider';
+
+<Meta title="Components/ThemeProvider" component={ThemeProvider} />
+
+# ThemeProvider
+Theming Component that provides theming context for Fluent UI React components.
+
+## Example usage
+Use the theme with Fluent UI by wrapping content within the provider. If `theme` is not provided, default (Fluent) theme will be provided:
+
+```tsx
+import { ThemeProvider } from '@fluentui/react-theme-provider';
+import { Button } from '@fluentui/react-button';
+
+export const App = () => (
+  <ThemeProvider>
+    <Button>Button</Button>
+  </ThemeProvider>
+);
+```
+
+## Theming Concepts
+Fluent UI React provides various ways to apply theming to the set of components within the library. The following outlines levels of theming:
+
+*TODO: Update with defintions*
+- Global
+- Component
+- Instance
+
+**It is recommended to apply theming at the higher levels as possible because it provides the best performance when applying theming across your applciation.**
+
+**Good Recommendation**: Define color values at the Global level that apply to all the components within the library. Typical examples are brand color.
+
+## Theme Concpet Matrix
+| Theme Concept    | Global            | Component              | Instance       |
+| ---------------- | ----------------- | ---------------------- | -------------- |
+| Color            | palette           | semanticColors, styles, variants | styles, tokens |
+| Fonts            | defaultFont, font | styles, variants       | styles, tokens |
+| Elevation        | effects           | styles, variants       | styles, tokens |
+| Corner Roundness | effects           | styles, variants       | styles, tokens |
+| Spacing          | spacing           | styles, variants       | styles, tokens |
+
+## Global Theming Examples
+
+### Color Palette updates with the [https://aka.ms/themedesigner](https://aka.ms/themedesigner)
+A color palette was generated and exported using the follow input values
+
+Primary color: #9710e6
+Text color: #323130
+Background color: #fff
+<Canvas>
+  <Story story={stories.colorPalette} />
+</Canvas>
+
+### Default Font Style
+
+<Canvas>
+  <Story story={stories.defaultFontStyle} />
+</Canvas>
+
+### Font Ramp
+
+<Canvas>
+  <Story story={stories.fontRamp} />
+</Canvas>
+
+### Elevation Ramp
+
+<Canvas>
+  <Story story={stories.elevationRamp} />
+</Canvas>
+
+### Corner Radius Ramp
+
+<Canvas>
+  <Story story={stories.cornerRadiusRamp} />
+</Canvas>
+
+### Spacing Ramp
+
+<Canvas>
+  <Story story={stories.spacingRamp} />
+</Canvas>
+
+
+## Component Theming Examples with Styles (Non converged Controls)
+
+### Semantic Colors 
+
+### Color styles in a Theme
+
+### Font styles in a Theme
+
+### Elevation styles in a Theme
+
+### Corner Radius styles in a Theme
+
+### Spacing styles in a Theme
+
+## Component Theming Examples with Variants and Tokens (Converged Controls)
+
+### Color variants with tokens
+
+### Font variants with tokens
+
+### Elevation variants with tokens
+
+### Corner Radius with tokens
+
+### Spacing variants with tokens
+
+## Instance Styling with styles 
+This is not recommended practice. Please use sparingly. 
+
+### Component Wrapping
+This is not a recommended practice. Please use sparingly. Multiple wrapping layers can cause render time performance issues
+
+### Inline styles
+This is not a recommended practice. Please use sparingly.
+
+## Instance Styling with tokens
+This is not a recommended practice. Please use the Variant approach via a Theme.
+
+### Inline tokens
+This is not a recommended practice. Please use sparingly.
+
+### Migrate from instance styling to variants
+<Canvas>
+  <Story story={stories.migrateFromStylesToTokens} />
+</Canvas>
+
