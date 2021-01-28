@@ -3,7 +3,8 @@ import React from 'react';
 import { Meta } from '@storybook/react/types-6-0';
 import { ThemeProvider } from '@fluentui/react-theme-provider';
 import { PrimaryButton, IPartialTheme, Stack, IStackTokens, Slider, Checkbox, initializeIcons, TextField } from '@fluentui/react';
-import { Button } from '@fluentui/react-button';
+import { Button, ButtonTokens } from '@fluentui/react-button';
+import { UploadIcon } from '@fluentui/react-icons';
 
 
 export default {
@@ -41,21 +42,24 @@ export const colorPalette = () => {
       black: '#000000',
       white: '#ffffff',
     },
-    defaultFontStyle: {
-      fontFamily: 'Times New Roman'
-    }
   }
 
   const stackTokens: IStackTokens = {
-    childrenGap: 40
+    childrenGap: 40,
   }
+
+  const sliderStyles = {
+    root: {
+      width: '300px'
+    }
+  };
   
   return (
     <ThemeProvider theme={myTheme}>
-      <Stack tokens={stackTokens}>
+      <Stack tokens={stackTokens} horizontalAlign="start" >
         <PrimaryButton>Non Converged Primary Button</PrimaryButton>
         <Button primary>Converged Pimary Button</Button>
-        <Slider min={0} max={10} defaultValue={5} showValue/>
+        <Slider styles={sliderStyles} min={0} max={10} defaultValue={5} showValue/>
         <Checkbox label="Checkbox"></Checkbox>
         <TextField placeholder="Textfield"></TextField>
       </Stack>
@@ -65,9 +69,31 @@ export const colorPalette = () => {
 
 export const defaultFontStyle = () => {
   
+  const myTheme: IPartialTheme = {
+    defaultFontStyle: {
+      fontFamily: 'Times New Roman'
+    }
+  }
+
+  const stackTokens: IStackTokens = {
+    childrenGap: 40,
+  }
+
+  const sliderStyles = {
+    root: {
+      width: '300px'
+    }
+  };
+  
   return (
-    <ThemeProvider>
-      
+    <ThemeProvider theme={myTheme}>
+      <Stack tokens={stackTokens} horizontalAlign="start" >
+        <PrimaryButton>Non Converged Primary Button</PrimaryButton>
+        <Button primary>Converged Pimary Button</Button>
+        <Slider styles={sliderStyles} min={0} max={10} defaultValue={5} showValue/>
+        <Checkbox label="Checkbox"></Checkbox>
+        <TextField placeholder="Textfield"></TextField>
+      </Stack>
     </ThemeProvider>
   )
 }
@@ -104,6 +130,198 @@ export const spacingRamp = () => {
   return (
     <ThemeProvider>
       
+    </ThemeProvider>
+  )
+}
+
+// Component Theming with Converged Components - Variants and Tokens
+
+export const colorVariants = () => {
+
+
+  const myTheme: IPartialTheme = {
+    components: {
+      Button: {
+        variants: {
+          uploadButton: {
+            background: '#2ea44f',
+            contentColor: '#fff',
+            borderColor: 'rgba(27,31,35,0.15)',
+            hovered: {
+              background: '#2c974b',
+              contentColor: '#fff'
+            },
+            pressed: {
+              background: '#2a8f47',
+              contentColor: '#ddd'
+            }
+
+          } as ButtonTokens
+        }
+      }
+    }
+  }
+
+  return (
+    <ThemeProvider theme={myTheme}>
+      <Button primary variant="uploadButton">Upload Button</Button>
+    </ThemeProvider>
+  )
+}
+
+export const fontVariants = () => {
+  
+  const myTheme: IPartialTheme = {
+    components: {
+      Button: {
+        variants: {
+          uploadButton: {
+            fontFamily: 'Times New Roman',
+            fontSize: '20px',
+            fontWeight: 'bold',
+            hovered: {
+             
+            },
+            pressed: {
+             
+            }
+
+          } as ButtonTokens
+        }
+      }
+    }
+  }
+
+  return (
+    <ThemeProvider theme={myTheme}> 
+      <Button variant="uploadButton">Upload Button</Button>
+    </ThemeProvider>
+  )
+}
+
+export const elevationVariants = () => {
+  
+  const myTheme: IPartialTheme = {
+    components: {
+      Button: {
+        variants: {
+          uploadButton: {
+            boxShadow: '0px 0.3px 0.9px rgba(0, 0, 0, 0.32), 0px 1.6px 3.6px rgba(0, 0, 0, 0.28)',
+            hovered: {
+             
+            },
+            pressed: {
+              boxShadow: '0px 0.3px 0.9px rgba(0, 0, 0, 0.32), 0px 1.6px 3.6px rgba(0, 0, 0, 0.28) inset',
+            }
+
+          } as ButtonTokens
+        }
+      }
+    }
+  }
+  
+  return (
+    <ThemeProvider theme={myTheme}> 
+      <Button variant="uploadButton">Upload Button</Button>
+    </ThemeProvider>
+  )
+}
+
+export const cornerRadiusVariants = () => {
+  
+  const myTheme: IPartialTheme = {
+    components: {
+      Button: {
+        variants: {
+          uploadButton: {
+            borderRadius: '999px',
+            hovered: {
+             
+            },
+            pressed: {
+             
+            }
+
+          } as ButtonTokens
+        }
+      }
+    }
+  }
+
+  return (
+    <ThemeProvider theme={myTheme}> 
+      <Button variant="uploadButton">Upload Button</Button>
+    </ThemeProvider>
+  )
+}
+
+export const spacingVariants = () => {
+  
+  const myTheme: IPartialTheme = {
+    components: {
+      Button: {
+        variants: {
+          uploadButton: {
+            paddingTop: '40px',
+            paddingLeft: '40px',
+            paddingBottom: '40px',
+            paddingRight: '40px',
+            hovered: {
+             
+            },
+            pressed: {
+             
+            }
+
+          } as ButtonTokens
+        }
+      }
+    }
+  }
+
+  return (
+    <ThemeProvider theme={myTheme}> 
+      <Button variant="uploadButton">Upload Button</Button>
+    </ThemeProvider>
+  )
+}
+
+export const combinedVariants = () => {
+  const myTheme: IPartialTheme = {
+    components: {
+      Button: {
+        variants: {
+          uploadButton: {
+            background: '#2ea44f',
+            contentColor: '#fff',
+            borderColor: 'rgba(27,31,35,0.15)',
+            borderRadius: '6px',
+            borderWidth: '1px',
+            paddingTop: '5px',
+            paddingBottom: '5px',
+            paddingLeft: '16px',
+            paddingRight: '16px',
+            fontSize: '14px',
+            fontWeight: '500',
+            fontFamily: '-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji',
+            boxShadow: 'rgba(27, 31, 35, 0.1) 0px 1px 0px 0px, rgba(255, 255, 255, 0.03) 0px 1px 0px 0px inset',
+            hovered: {
+              background: '#2c974b',
+            },
+            pressed: {
+              background: '#2a8f47',
+              boxShadow: 'rgba(20, 70, 32, 0.2) 0px 1px 0px 0px inset',
+            }
+
+          } as ButtonTokens
+        }
+      }
+    }
+  }
+
+  return (
+    <ThemeProvider theme={myTheme}> 
+      <Button primary variant="uploadButton" icon={<UploadIcon/>} iconPostion="after" >Upload Button</Button>
     </ThemeProvider>
   )
 }
