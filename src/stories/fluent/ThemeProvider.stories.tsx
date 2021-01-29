@@ -2,7 +2,7 @@ import React from 'react';
 // also exported from '@storybook/react' if you can deal with breaking changes in 6.1
 import { Meta } from '@storybook/react/types-6-0';
 import { ThemeProvider } from '@fluentui/react-theme-provider';
-import { PrimaryButton, IPartialTheme, Stack, IStackTokens, Slider, Checkbox, initializeIcons, TextField } from '@fluentui/react';
+import { PrimaryButton, IPartialTheme, Stack, IStackTokens, Slider, Checkbox, initializeIcons, TextField, IButtonStyles } from '@fluentui/react';
 import { Button, ButtonTokens } from '@fluentui/react-button';
 import { UploadIcon } from '@fluentui/react-icons';
 
@@ -133,6 +133,135 @@ export const spacingRamp = () => {
     </ThemeProvider>
   )
 }
+
+// Component Themeing with Non-Converged Components - Styles
+
+export const semanticColors = () => {
+
+  const myTheme: IPartialTheme = {
+    palette: {
+      themePrimary: '#9710e6',
+      themeLighterAlt: '#fbf5fe',
+      themeLighter: '#edd6fb',
+      themeLight: '#deb2f7',
+      themeTertiary: '#bf6af0',
+      themeSecondary: '#a32ae9',
+      themeDarkAlt: '#880ecf',
+      themeDark: '#730cae',
+      themeDarker: '#550981',
+      neutralLighterAlt: '#faf9f8',
+      neutralLighter: '#f3f2f1',
+      neutralLight: '#edebe9',
+      neutralQuaternaryAlt: '#e1dfdd',
+      neutralQuaternary: '#d0d0d0',
+      neutralTertiaryAlt: '#c8c6c4',
+      neutralTertiary: '#a19f9d',
+      neutralSecondary: '#605e5c',
+      neutralPrimaryAlt: '#3b3a39',
+      neutralPrimary: '#323130',
+      neutralDark: '#201f1e',
+      black: '#000000',
+      white: '#ffffff',
+    },
+    semanticColors: {
+      primaryButtonBackground: '#2ea44f',
+      primaryButtonBackgroundHovered: '#2c974b',
+      primaryButtonBackgroundPressed: '#2a8f47',
+      primaryButtonBorder: 'rgba(27,31,35,0.15)',
+    }
+  }
+
+  const stackTokens: IStackTokens = {
+    childrenGap: 40,
+  }
+
+  return (
+    <ThemeProvider theme={myTheme}>
+      <Stack tokens={stackTokens} horizontalAlign="start">
+        <PrimaryButton >PrimaryButton with colors provided by semanticColors</PrimaryButton>
+        <Checkbox label="Checkbox with colors provided by palette" checked />
+      </Stack>
+    </ThemeProvider>
+  )
+
+}
+
+export const colorComponentStyles = () => {
+
+  const myTheme: IPartialTheme = {
+    palette: {
+      themePrimary: '#9710e6',
+      themeLighterAlt: '#fbf5fe',
+      themeLighter: '#edd6fb',
+      themeLight: '#deb2f7',
+      themeTertiary: '#bf6af0',
+      themeSecondary: '#a32ae9',
+      themeDarkAlt: '#880ecf',
+      themeDark: '#730cae',
+      themeDarker: '#550981',
+      neutralLighterAlt: '#faf9f8',
+      neutralLighter: '#f3f2f1',
+      neutralLight: '#edebe9',
+      neutralQuaternaryAlt: '#e1dfdd',
+      neutralQuaternary: '#d0d0d0',
+      neutralTertiaryAlt: '#c8c6c4',
+      neutralTertiary: '#a19f9d',
+      neutralSecondary: '#605e5c',
+      neutralPrimaryAlt: '#3b3a39',
+      neutralPrimary: '#323130',
+      neutralDark: '#201f1e',
+      black: '#000000',
+      white: '#ffffff',
+    },
+    components: {
+      PrimaryButton: {
+        styles: {
+          root: {
+            borderWidth: '2px',
+            background: 'rgb(188, 188, 188)',
+            borderTopColor: 'rgb(247, 247, 247)',
+            borderLeftColor: 'rgb(247, 247, 247)',
+            borderBottomColor: 'rgb(0, 0, 0)',
+            borderRightColor: 'rgb(0, 0, 0)',
+            color: '#000',
+          },
+          rootHovered: {
+            borderWidth: '2px',
+            background: 'rgb(188, 188, 188)',
+            borderTopColor: 'rgb(247, 247, 247)',
+            borderLeftColor: 'rgb(247, 247, 247)',
+            borderBottomColor: 'rgb(0, 0, 0)',
+            borderRightColor: 'rgb(0, 0, 0)',
+            color: '#000',
+          },
+          rootPressed: {
+            borderWidth: '2px',
+            background: 'rgb(116, 116, 116)',
+            borderTopColor: 'rgb(0, 0, 0)',
+            borderLeftColor: 'rgb(0, 0, 0)',
+            borderBottomColor: 'rgb(247, 247, 247)',
+            borderRightColor: 'rgb(247, 247, 247)',
+          },
+        } as IButtonStyles
+      }
+    }
+  }
+
+  const stackTokens: IStackTokens = {
+    childrenGap: 40,
+  }
+  
+  return (
+    <ThemeProvider theme={myTheme}>
+      <Stack tokens={stackTokens} horizontalAlign="start">
+        <PrimaryButton >Styles just for Button</PrimaryButton>
+        <Checkbox label="Checkbox with colors provided by palette" checked />
+      </Stack>
+    </ThemeProvider>
+  )
+}
+
+
 
 // Component Theming with Converged Components - Variants and Tokens
 
