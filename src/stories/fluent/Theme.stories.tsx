@@ -1,20 +1,8 @@
 import React from 'react';
 // also exported from '@storybook/react' if you can deal with breaking changes in 6.1
-import { Story, Meta } from '@storybook/react/types-6-0';
+import { Meta } from '@storybook/react/types-6-0';
 import { FluentProvider, webLightTheme, Button, CompoundButton as VNCompoundButton, makeStyles } from '@fluentui/react-components';
-import { ThemeProvider, DefaultButton, PrimaryButton, CompoundButton, CommandBarButton, IconButton, initializeIcons, Stack, IContextualMenuProps, IPartialTheme, createTheme, IButtonStyles, IContextualMenuStyles, IContextualMenuItemStyles} from '@fluentui/react';
-import { CounterBadge } from '@fluentui/react-badge';  
-import { withDesign } from 'storybook-addon-designs';
-import {
-  Title,
-  Subtitle,
-  Description,
-  Primary,
-  ArgsTable,
-  Stories,
-  PRIMARY_STORY,
-} from '@storybook/addon-docs/blocks';
-import { background } from '@storybook/theming';
+import { ThemeProvider, DefaultButton, PrimaryButton, CompoundButton, CommandBarButton, IconButton, initializeIcons, IContextualMenuProps, IPartialTheme, createTheme, IButtonStyles, IContextualMenuStyles, IContextualMenuItemStyles} from '@fluentui/react';
 
 export default {
   title: 'Components/vNext Theme',

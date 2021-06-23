@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 // also exported from '@storybook/react' if you can deal with breaking changes in 6.1
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { action } from '@storybook/addon-actions';
-import {webLightTheme, teamsLightTheme, Button, ButtonProps, FluentProvider, useFluent, makeStyles} from '@fluentui/react-components'
+import {webLightTheme, teamsLightTheme, Button, ButtonProps, FluentProvider, makeStyles} from '@fluentui/react-components'
 import { PeopleTeam32Filled, PeopleTeam32Regular, } from '@fluentui/react-icons';
 
 export default {
@@ -43,7 +43,7 @@ export default {
 
 const Template: Story<ButtonProps> = (args) => {
  
-  return <FluentProvider theme={teamsLightTheme}><Button {...args} icon>Button</Button></FluentProvider>;
+  return <FluentProvider theme={teamsLightTheme}><Button {...args} >Button</Button></FluentProvider>;
 
 };
 export const Default = Template.bind({});
@@ -67,14 +67,14 @@ export const iconButton = () => {
 
     const useBasicStyles = makeStyles({
       root: theme => ({
-        color: theme.alias.color.neutral.brandForeground2Hover
+        color: 'blue'
       }),
     });
 
     const classes = useBasicStyles();
 
     return (
-      <Button iconOnly icon= {(hovered || checked)? <PeopleTeam32Filled className={classes.root}/> : <PeopleTeam32Regular />}
+      <Button icon= {(hovered || checked)? <PeopleTeam32Filled className={classes.root}/> : <PeopleTeam32Regular />}
         onMouseEnter={handleEnter}
         onMouseLeave={handleLeave}
         onClick={(e) => setChecked(!checked)}>
