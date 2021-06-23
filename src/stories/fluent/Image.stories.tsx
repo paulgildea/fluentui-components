@@ -1,8 +1,7 @@
 import React from 'react';
 // also exported from '@storybook/react' if you can deal with breaking changes in 6.1
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { ThemeProvider } from '@fluentui/react-theme-provider';
-import { Image, ImageProps } from '@fluentui/react-image';
+import { FluentProvider, Image, ImageProps, webLightTheme } from '@fluentui/react-components';
 
 export default {
   title: 'Components/Image',
@@ -26,9 +25,10 @@ export default {
 const Template: Story<ImageProps> = (args) => {
 
   return (
-    <ThemeProvider>
-      <Image {...args} />
-    </ThemeProvider>
+    // <FluentProvider theme={webLightTheme}>
+    //   <Image {...args} />
+    // </FluentProvider>
+    <div></div>
   );
 } 
 export const Default = Template.bind({});
