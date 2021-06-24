@@ -1,5 +1,5 @@
 import { Meta } from '@storybook/addon-docs/blocks';
-import { Image } from '@fluentui/react-image';
+import { FluentProvider, webLightTheme, Image } from '@fluentui/react-components';
 import Logo from './assets/resources.png';
     
 
@@ -10,8 +10,10 @@ import Logo from './assets/resources.png';
 This is a community project focused on providing code samples, common usage patterns, and guidance on how to use Fluent UI React.
 
 The main focus is on new "converged" components that are meant to be used in shared M365 enviroments.
+<FluentProvider theme={webLightTheme}>
+    <Image src={Logo} style={{background: '#000'}} />
+</FluentProvider>
 
-<Image src={Logo} style={{background: '#000'}} />
 
 
 
