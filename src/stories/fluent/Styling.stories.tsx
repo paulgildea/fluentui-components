@@ -3,6 +3,8 @@ import React from 'react';
 import { Meta } from '@storybook/react/types-6-0';
 import {TextField, ColorPicker, IColor} from '@fluentui/react';
 import { FluentProvider, webLightTheme, Button, makeStyles, createLightTheme, BrandVariants, Theme, Avatar, CounterBadge, Link, SplitButton, Menu, MenuTrigger, MenuItem, MenuPopover, MenuList, MenuButtonProps, createDarkTheme, mergeThemes, PartialTheme, Title1, Title2} from '@fluentui/react-components';
+import { Input } from '@fluentui/react-input';
+
 import * as ColorGenerator from '../utils/ColorGenerator';
 
 export default {
@@ -75,6 +77,7 @@ export const Default = () => {
         </MenuList>
       </MenuPopover>
     </Menu>
+    <Input type="text" />
       </div>
     </FluentProvider>
     <FluentProvider theme={darkTheme}>
@@ -103,6 +106,7 @@ export const Default = () => {
       </MenuList>
     </MenuPopover>
   </Menu>
+  <Input type="text" />
     </div>
   </FluentProvider>
     </div>
